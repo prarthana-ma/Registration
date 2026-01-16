@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form - Cognitive Load Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <h1>Complete Your Registration</h1>
+            <p class="subtitle">Please fill out all required information below</p>
+            
+            <!-- Progress indicator (intentionally confusing) -->
+            <div class="progress-bar">
+                <div class="progress-step" data-step="1">Step 1</div>
+                <div class="progress-step" data-step="2">Step 2</div>
+                <div class="progress-step" data-step="3">Step 3</div>
+                <div class="progress-step" data-step="4">Final</div>
+            </div>
+
+            <!-- Step 1: Personal Information -->
+            <div class="form-step active" id="step-1" data-section="personal">
+                <h2>Personal Details</h2>
+                <p class="instruction">Enter your information in the fields</p>
+                
+                <div class="form-group">
+                    <label for="name">Full Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" placeholder="Enter name here">
+                    <span class="error-message" id="error-name"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth <span class="required">*</span></label>
+                    <input type="date" id="dob" name="dob">
+                    <span class="error-message" id="error-dob"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Contact Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone number">
+                    <span class="error-message" id="error-phone"></span>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-next" onclick="nextStep()">Continue</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Address Information -->
+            <div class="form-step" id="step-2" data-section="address">
+                <h2>Location Information</h2>
+                <p class="instruction">Provide your address details below</p>
+                
+                <div class="form-group">
+                    <label for="street">Street Address <span class="required">*</span></label>
+                    <input type="text" id="street" name="street" placeholder="Street address">
+                    <span class="error-message" id="error-street"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City <span class="required">*</span></label>
+                    <input type="text" id="city" name="city" placeholder="City name">
+                    <span class="error-message" id="error-city"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="zip">Postal Code</label>
+                    <input type="text" id="zip" name="zip" placeholder="ZIP code">
+                    <span class="error-message" id="error-zip"></span>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-back" onclick="prevStep()">Go Back</button>
+                    <button type="button" class="btn btn-next" onclick="nextStep()">Next Step</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Preferences -->
+            <div class="form-step" id="step-3" data-section="preferences">
+                <h2>Your Preferences</h2>
+                <p class="instruction">Select your options from the list</p>
+                
+                <div class="form-group">
+                    <label>Notification Settings <span class="required">*</span></label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="notifications" value="email">
+                            <span>Email notifications</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="notifications" value="sms">
+                            <span>SMS alerts</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="notifications" value="push">
+                            <span>Push notifications</span>
+                        </label>
+                    </div>
+                    <span class="error-message" id="error-notifications"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="newsletter">Subscribe to Newsletter?</label>
+                    <select id="newsletter" name="newsletter">
+                        <option value="">Choose an option</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-back" onclick="prevStep()">Previous</button>
+                    <button type="button" class="btn btn-next" onclick="nextStep()">Continue</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Review & Submit -->
+            <div class="form-step" id="step-4" data-section="review">
+                <h2>Review Your Information</h2>
+                <p class="instruction">Please review all details before submitting</p>
+                
+                <div class="review-section">
+                    <p><strong>Name:</strong> <span id="review-name"></span></p>
+                    <p><strong>Date of Birth:</strong> <span id="review-dob"></span></p>
+                    <p><strong>Address:</strong> <span id="review-address"></span></p>
+                    <p><strong>City:</strong> <span id="review-city"></span></p>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="terms" name="terms">
+                        <span>I agree to the terms and conditions <span class="required">*</span></span>
+                    </label>
+                    <span class="error-message" id="error-terms"></span>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-back" onclick="prevStep()">Back</button>
+                    <button type="button" class="btn btn-submit" onclick="submitForm()">Submit Registration</button>
+                </div>
+            </div>
+
+            <!-- Success message -->
+            <div class="success-message" id="success-message" style="display: none;">
+                <h2>Registration Complete!</h2>
+                <p>Thank you for completing the form. Your data has been processed.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="tracker.js"></script>
+    <script src="form.js"></script>
+</body>
+</html>
